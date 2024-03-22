@@ -50,3 +50,4 @@ if second_user_number == user_number:
     print("Correct! You hit the ship.")
 else:
     print("Incorrect! You missed the ship.")
+
