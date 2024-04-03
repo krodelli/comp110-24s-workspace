@@ -23,6 +23,14 @@ def plus_or_minus(inp: dict[str, int], n: int) -> None:
         if inp[key] % 2 == 0:
             inp[key] += n
 
+def find_even(words: list[str]) -> str:
+        idx: int = 0
+        while idx < len(words):
+            if len(words[idx]) % 2 == 0:
+                return words[idx]
+            idx += 1
+        return ""
+
 
 diction: dict[str,int] = {"a": 2, "b": 4, "c": 7}
 test_val: int = 2
