@@ -1,4 +1,4 @@
-"""This is a house with windows and a smoking chimmney. Function for drawing the body of the house (a square) is located on lines 9-25. Roof funtion on lines 27-43. Windows (this is my draw something twice (3 times) function) on lines 45-65. Chimney is drawn with function lines 67-80. The recursive funtion is my smoke, which is on lines 82-100. The main function is at the end of my document, and is the last function. It calls all of my functions and sets the scene. For splitting up, I originally had the roof and square functions together, but it made more sense to split it up, that way i could color them different things as well. Lastly, I used xcor() on line 62 to move the turtle to a new position based on the x-coordinate, the size, and a multiplier of 1.5. """
+"""This is a house with windows and a smoking chimmney. Function for drawing the body of the house (a square) is located on lines 9-25. Roof funtion on lines 27-43. Windows (this is my draw something twice (3 times) function) on lines 45-65. Chimney is drawn with function lines 67-80. The recursive funtion is my smoke, which is on lines 82-100. The main function is at the end of my document, and is the last function. It calls all of my functions and sets the scene. For splitting up, I originally had the roof and square functions together, but it made more sense to split it up, that way i could color them different things as well. Lastly, I used xcor() on line 62 to move the turtle to a new position based on the x-coordinate, the size, and a multiplier of 1.5."""
 
 __author__ = "730466512"
 
@@ -9,7 +9,7 @@ from turtle import Turtle, colormode, done
 colormode(255)
 
 
-def draw_square(a_turtle: Turtle, x: float, y: float, width: float, fill: list[int]) -> None:
+def draw_square(a_turtle: Turtle, x: float, y: float, width: float, fill: tuple[float, float, float]) -> None:
     """Draw a square of given width whose top left corner is at x,y."""
     a_turtle.penup()
     a_turtle.goto(x, y)  # Lower the square.
@@ -27,7 +27,7 @@ def draw_square(a_turtle: Turtle, x: float, y: float, width: float, fill: list[i
         a_turtle.end_fill()
 
 
-def draw_roof(a_turtle: Turtle, x: float, y: float, width: float, fill: list[int]) -> None:
+def draw_roof(a_turtle: Turtle, x: float, y: float, width: float, fill: tuple[float, float, float]) -> None:
     """Draw the roof for the house."""
     a_turtle.penup()
     a_turtle.goto(x, y)  
@@ -45,7 +45,7 @@ def draw_roof(a_turtle: Turtle, x: float, y: float, width: float, fill: list[int
         a_turtle.end_fill()
 
 
-def draw_windows(t: Turtle, x_start: float, y_start: float, size: float, num_windows: int, border_color: str, fill_color: list[int]) -> None:
+def draw_windows(t: Turtle, x_start: float, y_start: float, size: float, num_windows: int, border_color: str, fill_color: tuple[float, float, float]) -> None:
     """Draw repeating square windows."""
     t.penup()
     t.goto(x_start, y_start)  # Lower the windows.
@@ -87,15 +87,15 @@ def draw_smoke(turtle: Turtle, x: float, y: float, size: float, depth: float) ->
     if depth == 0:
         return
     turtle.penup()
-    turtle.goto(x, y)  # Move to the starting position.
+    turtle.goto(x, y)  
     turtle.pendown()
     turtle.fillcolor("gray")
     turtle.begin_fill()
     turtle.circle(size)
     turtle.end_fill()
-    new_x = x + size * 0.7  #  Adjust x position for the next smoke.
-    new_y = y + size * 0.5  #  Adjust y position for the next smoke.
-    new_size = size * 0.8  #  Reduce size for the next smoke.
+    new_x = x + size * 0.7  
+    new_y = y + size * 0.5  
+    new_size = size * 0.8
     draw_smoke(turtle, new_x, new_y, new_size, depth - 1)
 
 
@@ -104,11 +104,11 @@ def main() -> None:
     turtle = Turtle()
     turtle.speed(0)
     turtle.hideturtle()
-    draw_square(turtle, -150.0, 100.0, 250.0, [180, 158, 154])
-    draw_roof(turtle, -150.0, 100.0, 250.0, [105, 93, 93])
-    window_size = 50.0  #  Adjust window size as needed.
+    draw_square(turtle, -150.0, 100.0, 250.0, (180, 158, 154))
+    draw_roof(turtle, -150.0, 100.0, 250.0, (105, 93, 93))
+    window_size = 50.0  
     num_windows = 3
-    draw_windows(turtle, -125.0, 80.0, window_size, num_windows, "brown", [173, 245, 241])
+    draw_windows(turtle, -125.0, 80.0, window_size, num_windows, "brown", (173, 245, 241))
     chimney_width = 20.0
     chimney_height = 100.0
     chimney_x = -120.0
